@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{0B26F6DD-3F1C-4908-982A-61993E80CF72}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{4494F6CA-DA0D-4984-B3AC-1E9BD4A71DCB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -499,29 +499,6 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Foreach customer file\Execute SQL Task"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{7fa67743-8227-4ebd-867a-32ecbc94678c}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Execute SQL Task"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"update process_log 
-	set 
-	process_end_time = cast (getdate() as time(0) ),
-	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
-where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = cast (getdate() as time(0) ),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\Foreach customer file\process_log"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -539,11 +516,34 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
  
 values
  
-(cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", cast (getdate() as time(0) ))"</DTS:PropertyExpression>
+( cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", getdate() )"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;(cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, cast (getdate() as time(0) ))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;( cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, getdate() )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach customer file\P_L EndTime &amp; #OfRows"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7fa67743-8227-4ebd-867a-32ecbc94678c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="P_L EndTime &amp; #OfRows"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"update process_log 
+	set 
+	process_end_time = getdate(),
+	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
+where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
+              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = getdate(),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -581,7 +581,7 @@ else
           DTS:From="Package\Foreach customer file\customer data  flow"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\Foreach customer file\Execute SQL Task" />
+          DTS:To="Package\Foreach customer file\P_L EndTime &amp; #OfRows" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Foreach customer file.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
@@ -594,7 +594,7 @@ else
           DTS:refId="Package\Foreach customer file.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
           DTS:DTSID="{3A2C7EFA-B5DB-4CEB-A3ED-5A9AEFB4C885}"
-          DTS:From="Package\Foreach customer file\Execute SQL Task"
+          DTS:From="Package\Foreach customer file\P_L EndTime &amp; #OfRows"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
           DTS:To="Package\Foreach customer file\P_L update status" />
@@ -1442,11 +1442,11 @@ else
  
 values
  
-(cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", cast (getdate() as time(0) ))"</DTS:PropertyExpression>
+( cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", getdate() )"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;(cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, cast (getdate() as time(0) ))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;( cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, getdate() )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1463,13 +1463,13 @@ values
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"update process_log 
 	set 
-	process_end_time = cast (getdate() as time(0) ),
+	process_end_time = getdate(),
 	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
 where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = cast (getdate() as time(0) ),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = getdate(),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1562,29 +1562,6 @@ else
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Foreach product file\Execute SQL Task"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{87ab1e18-6ae1-403a-88ab-0444ae80391a}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Execute SQL Task"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"update process_log 
-	set 
-	process_end_time = cast (getdate() as time(0) ),
-	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
-where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = cast (getdate() as time(0) ),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\Foreach product file\process_log"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -1602,11 +1579,11 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
  
 values
  
-(cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", cast (getdate() as time(0) ))"</DTS:PropertyExpression>
+( cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", getdate() )"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;(cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, cast (getdate() as time(0) ))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;( cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, getdate() )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2355,6 +2332,29 @@ values
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
+          DTS:refId="Package\Foreach product file\P_L EndTime &amp; #OfRows"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{87ab1e18-6ae1-403a-88ab-0444ae80391a}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="P_L EndTime &amp; #OfRows"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"update process_log 
+	set 
+	process_end_time = getdate(),
+	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
+where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
+              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = getdate(),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Foreach product file\P_L update status"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -2397,12 +2397,12 @@ else
           DTS:From="Package\Foreach product file\products data flow"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
-          DTS:To="Package\Foreach product file\Execute SQL Task" />
+          DTS:To="Package\Foreach product file\P_L EndTime &amp; #OfRows" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Foreach product file.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
           DTS:DTSID="{BD6C06CA-F9C8-4BD6-B73C-5F7DAEDF221B}"
-          DTS:From="Package\Foreach product file\Execute SQL Task"
+          DTS:From="Package\Foreach product file\P_L EndTime &amp; #OfRows"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
           DTS:To="Package\Foreach product file\P_L update status" />
@@ -2444,29 +2444,6 @@ else
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Foreach Sales person file\Execute SQL Task"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{42377d41-14e2-47ad-b0f1-8807cb9a0de0}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Execute SQL Task"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"update process_log 
-	set 
-	process_end_time = cast (getdate() as time(0) ),
-	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
-where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = cast (getdate() as time(0) ),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\Foreach Sales person file\process_log"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -2484,11 +2461,34 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
  
 values
  
-(cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", cast (getdate() as time(0) ))"</DTS:PropertyExpression>
+( cast (getdate() as date), '" + @[User::file_name_and_extension]  + "', 'In progress' ," +  (DT_STR, 50, 1252) @[User::number_of_rows] + ", getdate() )"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;(cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, cast (getdate() as time(0) ))" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="insert into process_log&#xA; &#xA;(process_date, file_name, [status], number_of_rows, process_start_time)&#xA; &#xA;values&#xA; &#xA;( cast (getdate() as date), 'Order.xlsx', 'In progress' ,0, getdate() )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Sales person file\P_L EndTime &amp; #OfRows"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{42377d41-14e2-47ad-b0f1-8807cb9a0de0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="P_L EndTime &amp; #OfRows"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"update process_log 
+	set 
+	process_end_time = getdate(),
+	number_of_rows = " + (DT_STR, 50, 1252) @[User::number_of_rows]  + "
+where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
+              SQLTask:SqlStatementSource="update process_log &#xA;&#x9;set &#xA;&#x9;process_end_time = getdate(),&#xA;&#x9;number_of_rows = 0&#xA;where file_name = 'Order.xlsx'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2888,12 +2888,12 @@ else
           DTS:From="Package\Foreach Sales person file\sales person data flow"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
-          DTS:To="Package\Foreach Sales person file\Execute SQL Task" />
+          DTS:To="Package\Foreach Sales person file\P_L EndTime &amp; #OfRows" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Foreach Sales person file.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
           DTS:DTSID="{DDB7BA0E-4B25-4CEE-A993-6CC529FE48E8}"
-          DTS:From="Package\Foreach Sales person file\Execute SQL Task"
+          DTS:From="Package\Foreach Sales person file\P_L EndTime &amp; #OfRows"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 2"
           DTS:To="Package\Foreach Sales person file\P_L update status" />
@@ -3051,8 +3051,8 @@ else
           Id="Package\Foreach customer file\customer data  flow"
           TopLeft="17.5833337472545,79.3833360694516" />
         <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Foreach customer file\Execute SQL Task"
+          Size="196.8,41.6"
+          Id="Package\Foreach customer file\P_L EndTime &amp; #OfRows"
           TopLeft="20.6416574858964,150.78333486067" />
         <NodeLayout
           Size="161.6,41.6"
@@ -3064,18 +3064,30 @@ else
           TopLeft="30.0166571133675,15.1833344060838" />
         <EdgeLayout
           Id="Package\Foreach customer file.PrecedenceConstraints[Constraint]"
-          TopLeft="102.312495616575,120.983336069452">
+          TopLeft="101.583333747255,120.983336069452">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,29.7999987912182"
+              EndConnector="17.4583237386419,29.7999987912184"
               Start="0,0"
-              End="0,22.2999987912182">
+              End="17.4583237386419,22.2999987912184">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.2999987912182" />
+                    End="0,10.8999993956092" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.8999993956092"
+                    Point2="0,14.8999993956092"
+                    Point3="4,14.8999993956092" />
+                  <mssgle:LineSegment
+                    End="13.4583237386419,14.8999993956092" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.4583237386419,14.8999993956092"
+                    Point2="17.4583237386419,14.8999993956092"
+                    Point3="17.4583237386419,18.8999993956092" />
+                  <mssgle:LineSegment
+                    End="17.4583237386419,22.2999987912184" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3108,18 +3120,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach customer file.PrecedenceConstraints[Constraint 2]"
-          TopLeft="99.8499906122692,192.38333486067">
+          TopLeft="119.041657485896,192.38333486067">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30.5000009814885"
+              EndConnector="-22.3833337472543,30.500000981488"
               Start="0,0"
-              End="0,23.0000009814885">
+              End="-22.3833337472543,23.000000981488">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.0000009814885" />
+                    End="0,11.250000490744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.250000490744"
+                    Point2="0,15.250000490744"
+                    Point3="-4,15.250000490744" />
+                  <mssgle:LineSegment
+                    End="-18.3833337472543,15.250000490744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.3833337472543,15.250000490744"
+                    Point2="-22.3833337472543,15.250000490744"
+                    Point3="-22.3833337472543,19.250000490744" />
+                  <mssgle:LineSegment
+                    End="-22.3833337472543,23.000000981488" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3131,8 +3155,8 @@ else
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="204.8,319.2"
-          Size="204.8,362.4"
+          PanelSize="222.4,319.2"
+          Size="222.4,362.4"
           Id="Package\Foreach customer file"
           TopLeft="259.583323018418,553.216670656336" />
         <NodeLayout
@@ -3191,26 +3215,26 @@ else
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="10.8750029057262,30.416667226288"
+              EndConnector="10.8750029057261,30.4166672262885"
               Start="0,0"
-              End="10.8750029057262,22.916667226288">
+              End="10.8750029057261,22.9166672262885">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.208333613144" />
+                    End="0,11.2083336131442" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.208333613144"
-                    Point2="0,15.208333613144"
-                    Point3="4,15.208333613144" />
+                    Point1="0,11.2083336131442"
+                    Point2="0,15.2083336131442"
+                    Point3="4,15.2083336131442" />
                   <mssgle:LineSegment
-                    End="6.87500290572616,15.208333613144" />
+                    End="6.87500290572613,15.2083336131442" />
                   <mssgle:CubicBezierSegment
-                    Point1="6.87500290572616,15.208333613144"
-                    Point2="10.8750029057262,15.208333613144"
-                    Point3="10.8750029057262,19.208333613144" />
+                    Point1="6.87500290572613,15.2083336131442"
+                    Point2="10.8750029057261,15.2083336131442"
+                    Point3="10.8750029057261,19.2083336131442" />
                   <mssgle:LineSegment
-                    End="10.8750029057262,22.916667226288" />
+                    End="10.8750029057261,22.9166672262885" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3225,26 +3249,26 @@ else
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8.66666600439302,41.8500001291435"
+              EndConnector="8.66666600439306,41.850000129143"
               Start="0,0"
-              End="8.66666600439302,34.3500001291435">
+              End="8.66666600439306,34.350000129143">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.9250000645718" />
+                    End="0,16.9250000645715" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.9250000645718"
-                    Point2="0,20.9250000645718"
-                    Point3="4,20.9250000645718" />
+                    Point1="0,16.9250000645715"
+                    Point2="0,20.9250000645715"
+                    Point3="4,20.9250000645715" />
                   <mssgle:LineSegment
-                    End="4.66666600439302,20.9250000645718" />
+                    End="4.66666600439306,20.9250000645715" />
                   <mssgle:CubicBezierSegment
-                    Point1="4.66666600439302,20.9250000645718"
-                    Point2="8.66666600439302,20.9250000645718"
-                    Point3="8.66666600439302,24.9250000645718" />
+                    Point1="4.66666600439306,20.9250000645715"
+                    Point2="8.66666600439306,20.9250000645715"
+                    Point3="8.66666600439306,24.9250000645715" />
                   <mssgle:LineSegment
-                    End="8.66666600439302,34.3500001291435" />
+                    End="8.66666600439306,34.350000129143" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3261,8 +3285,8 @@ else
           Id="Package\Foreach order file"
           TopLeft="7.08333305186747,107.783333889511" />
         <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Foreach product file\Execute SQL Task"
+          Size="196.8,41.6"
+          Id="Package\Foreach product file\P_L EndTime &amp; #OfRows"
           TopLeft="17.8083110726556,160.433334886498" />
         <NodeLayout
           Size="161.6,41.6"
@@ -3312,18 +3336,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach product file.PrecedenceConstraints[Constraint 1]"
-          TopLeft="102.349977598589,124.966669204765">
+          TopLeft="104.491644124523,124.966669204765">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35.4666656817334"
+              EndConnector="11.7166669481329,35.4666656817334"
               Start="0,0"
-              End="0,27.9666656817334">
+              End="11.7166669481329,27.9666656817334">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.9666656817334" />
+                    End="0,13.7333328408667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7333328408667"
+                    Point2="0,17.7333328408667"
+                    Point3="4,17.7333328408667" />
+                  <mssgle:LineSegment
+                    End="7.7166669481329,17.7333328408667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.7166669481329,17.7333328408667"
+                    Point2="11.7166669481329,17.7333328408667"
+                    Point3="11.7166669481329,21.7333328408667" />
+                  <mssgle:LineSegment
+                    End="11.7166669481329,27.9666656817334" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3334,18 +3370,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach product file.PrecedenceConstraints[Constraint 2]"
-          TopLeft="102.624977325401,202.033334886498">
+          TopLeft="116.208311072656,202.033334886498">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.0833341684598"
+              EndConnector="-11.1666674945088,32.08333416846"
               Start="0,0"
-              End="0,24.5833341684598">
+              End="-11.1666674945088,24.58333416846">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.5833341684598" />
+                    End="0,12.04166708423" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.04166708423"
+                    Point2="0,16.04166708423"
+                    Point3="-4,16.04166708423" />
+                  <mssgle:LineSegment
+                    End="-7.16666749450881,16.04166708423" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.16666749450881,16.04166708423"
+                    Point2="-11.1666674945088,16.04166708423"
+                    Point3="-11.1666674945088,20.04166708423" />
+                  <mssgle:LineSegment
+                    End="-11.1666674945088,24.58333416846" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3357,13 +3405,13 @@ else
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="214.4,330.4"
-          Size="214.4,373.6"
+          PanelSize="220,330.4"
+          Size="220,373.6"
           Id="Package\Foreach product file"
           TopLeft="591.249976505837,546.350004024108" />
         <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Foreach Sales person file\Execute SQL Task"
+          Size="196.8,41.6"
+          Id="Package\Foreach Sales person file\P_L EndTime &amp; #OfRows"
           TopLeft="26.9749646594148,160.816668280098" />
         <NodeLayout
           Size="161.6,41.6"
@@ -3413,18 +3461,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Sales person file.PrecedenceConstraints[Constraint 1]"
-          TopLeft="108.154131446118,131.750002763669">
+          TopLeft="106.933298232821,131.750002763669">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,29.0666655164294"
+              EndConnector="18.4416664265934,29.0666655164291"
               Start="0,0"
-              End="0,21.5666655164294">
+              End="18.4416664265934,21.5666655164291">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5666655164294" />
+                    End="0,10.5333327582146" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5333327582146"
+                    Point2="0,14.5333327582146"
+                    Point3="4,14.5333327582146" />
+                  <mssgle:LineSegment
+                    End="14.4416664265934,14.5333327582146" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.4416664265934,14.5333327582146"
+                    Point2="18.4416664265934,14.5333327582146"
+                    Point3="18.4416664265934,18.5333327582146" />
+                  <mssgle:LineSegment
+                    End="18.4416664265934,21.5666655164291" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3435,18 +3495,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Sales person file.PrecedenceConstraints[Constraint 2]"
-          TopLeft="109.187464348974,202.416668280098">
+          TopLeft="125.374964659415,202.416668280098">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,33.1666675104035"
+              EndConnector="-16.375000620882,33.166667510404"
               Start="0,0"
-              End="0,25.6666675104035">
+              End="-16.375000620882,25.666667510404">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.6666675104035" />
+                    End="0,12.583333755202" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.583333755202"
+                    Point2="0,16.583333755202"
+                    Point3="-4,16.583333755202" />
+                  <mssgle:LineSegment
+                    End="-12.375000620882,16.583333755202" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.375000620882,16.583333755202"
+                    Point2="-16.375000620882,16.583333755202"
+                    Point3="-16.375000620882,20.583333755202" />
+                  <mssgle:LineSegment
+                    End="-16.375000620882,25.666667510404" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3484,14 +3556,14 @@ else
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,94.4333371180945"
+              EndConnector="0,94.433337118094"
               Start="0,0"
-              End="0,86.9333371180945">
+              End="0,86.933337118094">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,86.9333371180945" />
+                    End="0,86.933337118094" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3652,9 +3724,9 @@ else
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11.1416677180269,60.6166674535806"
+              EndConnector="11.141667718027,60.6166674535806"
               Start="0,0"
-              End="11.1416677180269,53.1166674535806">
+              End="11.141667718027,53.1166674535806">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -3665,13 +3737,13 @@ else
                     Point2="0,30.3083337267903"
                     Point3="4,30.3083337267903" />
                   <mssgle:LineSegment
-                    End="7.14166771802692,30.3083337267903" />
+                    End="7.14166771802695,30.3083337267903" />
                   <mssgle:CubicBezierSegment
-                    Point1="7.14166771802692,30.3083337267903"
-                    Point2="11.1416677180269,30.3083337267903"
-                    Point3="11.1416677180269,34.3083337267903" />
+                    Point1="7.14166771802695,30.3083337267903"
+                    Point2="11.141667718027,30.3083337267903"
+                    Point3="11.141667718027,34.3083337267903" />
                   <mssgle:LineSegment
-                    End="11.1416677180269,53.1166674535806" />
+                    End="11.141667718027,53.1166674535806" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3687,7 +3759,11 @@ else
     design-time-name="Package\Foreach customer file\customer data  flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Foreach customer file\customer data  flow\Row Count"
+          TopLeft="90,204" />
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Foreach customer file\customer data  flow\OLE DB Destination"
@@ -3696,44 +3772,6 @@ else
           Size="140,41.6"
           Id="Package\Foreach customer file\customer data  flow\Excel Source"
           TopLeft="96.6666628254786,69.3333338843452" />
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Foreach customer file\customer data  flow\Row Count"
-          TopLeft="90,204" />
-        <EdgeLayout
-          Id="Package\Foreach customer file\customer data  flow.Paths[Excel Source Output]"
-          TopLeft="166.666662825479,110.933333884345">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-11.8666628254786,93.0666661156548"
-              Start="0,0"
-              End="-11.8666628254786,85.5666661156548">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.5333330578274" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,42.5333330578274"
-                    Point2="0,46.5333330578274"
-                    Point3="-4,46.5333330578274" />
-                  <mssgle:LineSegment
-                    End="-7.86666282547858,46.5333330578274" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-7.86666282547858,46.5333330578274"
-                    Point2="-11.8666628254786,46.5333330578274"
-                    Point3="-11.8666628254786,50.5333330578274" />
-                  <mssgle:LineSegment
-                    End="-11.8666628254786,85.5666661156548" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach customer file\customer data  flow.Paths[Row Count Output 1]"
           TopLeft="219.6,224.8">
@@ -3765,7 +3803,45 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach customer file\customer data  flow.Paths[Excel Source Output]"
+          TopLeft="166.666662825479,110.933333884345">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.8666628254786,93.0666661156548"
+              Start="0,0"
+              End="-11.8666628254786,85.5666661156548">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5333330578274" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.5333330578274"
+                    Point2="0,46.5333330578274"
+                    Point3="-4,46.5333330578274" />
+                  <mssgle:LineSegment
+                    End="-7.86666282547858,46.5333330578274" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.86666282547858,46.5333330578274"
+                    Point2="-11.8666628254786,46.5333330578274"
+                    Point3="-11.8666628254786,50.5333330578274" />
+                  <mssgle:LineSegment
+                    End="-11.8666628254786,85.5666661156548" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3801,53 +3877,19 @@ else
     design-time-name="Package\Foreach order file\orders data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Foreach order file\orders data flow\Row Count"
-          TopLeft="210.83332495557,162.933334628211" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Foreach order file\orders data flow\OLE DB Destination"
           TopLeft="357.833332108127,326.20000035127" />
         <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Foreach order file\orders data flow\Row Count"
+          TopLeft="210.83332495557,162.933334628211" />
+        <NodeLayout
           Size="140,41.6"
           Id="Package\Foreach order file\orders data flow\Excel Source"
           TopLeft="185,55" />
-        <EdgeLayout
-          Id="Package\Foreach order file\orders data flow.Paths[Excel Source Output]"
-          TopLeft="255,96.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="20.63332495557,66.333334628211"
-              Start="0,0"
-              End="20.63332495557,58.833334628211">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.1666673141055" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,29.1666673141055"
-                    Point2="0,33.1666673141055"
-                    Point3="4,33.1666673141055" />
-                  <mssgle:LineSegment
-                    End="16.63332495557,33.1666673141055" />
-                  <mssgle:CubicBezierSegment
-                    Point1="16.63332495557,33.1666673141055"
-                    Point2="20.63332495557,33.1666673141055"
-                    Point3="20.63332495557,37.1666673141055" />
-                  <mssgle:LineSegment
-                    End="20.63332495557,58.833334628211" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach order file\orders data flow.Paths[Row Count Output 1]"
           TopLeft="275.63332495557,204.533334628211">
@@ -3879,7 +3921,45 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach order file\orders data flow.Paths[Excel Source Output]"
+          TopLeft="255,96.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.63332495557,66.333334628211"
+              Start="0,0"
+              End="20.63332495557,58.833334628211">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.1666673141055" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.1666673141055"
+                    Point2="0,33.1666673141055"
+                    Point3="4,33.1666673141055" />
+                  <mssgle:LineSegment
+                    End="16.63332495557,33.1666673141055" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.63332495557,33.1666673141055"
+                    Point2="20.63332495557,33.1666673141055"
+                    Point3="20.63332495557,37.1666673141055" />
+                  <mssgle:LineSegment
+                    End="20.63332495557,58.833334628211" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3915,7 +3995,11 @@ else
     design-time-name="Package\Foreach product file\products data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Foreach product file\products data flow\Row Count"
+          TopLeft="156,169" />
         <NodeLayout
           Size="140,41.6"
           Id="Package\Foreach product file\products data flow\Excel Source"
@@ -3924,44 +4008,6 @@ else
           Size="171.2,41.6"
           Id="Package\Foreach product file\products data flow\OLE DB Destination"
           TopLeft="309,251" />
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Foreach product file\products data flow\Row Count"
-          TopLeft="156,169" />
-        <EdgeLayout
-          Id="Package\Foreach product file\products data flow.Paths[Excel Source Output]"
-          TopLeft="332,99.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-111.2,69.4"
-              Start="0,0"
-              End="-111.2,61.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.7" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.7"
-                    Point2="0,34.7"
-                    Point3="-4,34.7" />
-                  <mssgle:LineSegment
-                    End="-107.2,34.7" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-107.2,34.7"
-                    Point2="-111.2,34.7"
-                    Point3="-111.2,38.7" />
-                  <mssgle:LineSegment
-                    End="-111.2,61.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach product file\products data flow.Paths[Row Count Output 1]"
           TopLeft="220.8,210.6">
@@ -3993,7 +4039,45 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach product file\products data flow.Paths[Excel Source Output]"
+          TopLeft="332,99.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-111.2,69.4"
+              Start="0,0"
+              End="-111.2,61.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.7"
+                    Point2="0,34.7"
+                    Point3="-4,34.7" />
+                  <mssgle:LineSegment
+                    End="-107.2,34.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-107.2,34.7"
+                    Point2="-111.2,34.7"
+                    Point3="-111.2,38.7" />
+                  <mssgle:LineSegment
+                    End="-111.2,61.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4029,53 +4113,19 @@ else
     design-time-name="Package\Foreach Sales person file\sales person data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Foreach Sales person file\sales person data flow\OLE DB Destination"
           TopLeft="215.5,234.5" />
         <NodeLayout
-          Size="140,41.6"
-          Id="Package\Foreach Sales person file\sales person data flow\Excel Source"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
           Size="129.6,41.6"
           Id="Package\Foreach Sales person file\sales person data flow\Row Count"
           TopLeft="119,121" />
-        <EdgeLayout
-          Id="Package\Foreach Sales person file\sales person data flow.Paths[Excel Source Output]"
-          TopLeft="75.5,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="108.3,73.9"
-              Start="0,0"
-              End="108.3,66.4">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.95" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.95"
-                    Point2="0,36.95"
-                    Point3="4,36.95" />
-                  <mssgle:LineSegment
-                    End="104.3,36.95" />
-                  <mssgle:CubicBezierSegment
-                    Point1="104.3,36.95"
-                    Point2="108.3,36.95"
-                    Point3="108.3,40.95" />
-                  <mssgle:LineSegment
-                    End="108.3,66.4" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\Foreach Sales person file\sales person data flow\Excel Source"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\Foreach Sales person file\sales person data flow.Paths[Row Count Output 1]"
           TopLeft="183.8,162.6">
@@ -4107,7 +4157,45 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Sales person file\sales person data flow.Paths[Excel Source Output]"
+          TopLeft="75.5,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.3,73.9"
+              Start="0,0"
+              End="108.3,66.4">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.95" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.95"
+                    Point2="0,36.95"
+                    Point3="4,36.95" />
+                  <mssgle:LineSegment
+                    End="104.3,36.95" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.3,36.95"
+                    Point2="108.3,36.95"
+                    Point3="108.3,40.95" />
+                  <mssgle:LineSegment
+                    End="108.3,66.4" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

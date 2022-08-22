@@ -3,10 +3,12 @@
   DTS:ObjectName="sales person excel file"
   DTS:DTSID="{2CDE27E2-D432-4DD9-B02A-CD732C5C29CC}"
   DTS:CreationName="EXCEL">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + @[$Project::files_path]  + "SalesPerson.xlsx;Extended Properties=\"EXCEL 12.0 XML;HDR=YES\";"</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="0"
       DTS:ConnectRetryInterval="0"
-      DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\SalesPerson.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\SalesPerson.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

@@ -3,6 +3,8 @@
   DTS:ObjectName="ED_INSTANCE3.project_sales"
   DTS:DTSID="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
   DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Data Source=" + @[$Project::server_name]  + ";Initial Catalog=" + @[$Project::database_name]  + ";Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;"</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"

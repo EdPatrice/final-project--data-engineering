@@ -3,6 +3,8 @@
   DTS:ObjectName="product excel file"
   DTS:DTSID="{F7434464-8729-48FA-86F2-C642C81A5AAB}"
   DTS:CreationName="EXCEL">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + @[$Project::files_path]  + "Product.xlsx;Extended Properties=\"EXCEL 12.0 XML;HDR=YES\";"</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="0"
