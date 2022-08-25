@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{90B9E9B0-48A1-4A5A-81C7-DBD10879B848}">
+  DTS:VersionBuild="53"
+  DTS:VersionGUID="{200F0AA7-4F45-4840-B6D4-54404475AC71}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,6 +26,17 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Order.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{F36863CD-06B1-4F15-B979-C81842EC74B8}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.gmail.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -602,18 +613,18 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_customer) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
+            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_orders) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
 	update process_log
 		set [status] = 'staging completed'
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_customer) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1569,12 +1580,12 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2480,18 +2491,18 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_products) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
+            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_orders) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
 	update process_log
 		set [status] = 'staging completed'
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_products) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2652,18 +2663,18 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_sales_person) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
+            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_orders) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
 	update process_log
 		set [status] = 'staging completed'
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_sales_person) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -3360,6 +3371,10 @@ else
           Size="134.4,41.6"
           Id="Package\Foreach customer file\process_log"
           TopLeft="30.0166571133675,15.1833344060838" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Foreach customer file\select status"
+          TopLeft="35.7629445664685,292.992593686963" />
         <EdgeLayout
           Id="Package\Foreach customer file.PrecedenceConstraints[Constraint]"
           TopLeft="101.583333747255,120.983336069452">
@@ -3450,10 +3465,6 @@ else
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,41.6"
-          Id="Package\Foreach customer file\select status"
-          TopLeft="35.7629445664685,292.992593686963" />
         <EdgeLayout
           Id="Package\Foreach customer file.PrecedenceConstraints[Constraint 3]"
           TopLeft="100.210634152555,264.483335842158">
@@ -3499,6 +3510,10 @@ else
           Size="134.4,41.6"
           Id="Package\Foreach order file\process_log"
           TopLeft="39.8583308911986,5.45000058372827" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Foreach order file\select status"
+          TopLeft="64.1111017288987,290.577779522649" />
         <EdgeLayout
           Id="Package\Foreach order file.PrecedenceConstraints[Constraint]"
           TopLeft="39.8583308911986,26.2500005837283">
@@ -3601,10 +3616,6 @@ else
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,41.6"
-          Id="Package\Foreach order file\select status"
-          TopLeft="64.1111017288987,290.577779522649" />
         <EdgeLayout
           Id="Package\Foreach order file.PrecedenceConstraints[Constraint 3]"
           TopLeft="130.980549746862,266.316669654184">
@@ -3650,6 +3661,10 @@ else
           Size="162.4,41.6"
           Id="Package\Foreach product file\products data flow"
           TopLeft="23.2916441245227,83.3666692047646" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Foreach product file\select status"
+          TopLeft="48.809227151858,310.135188654455" />
         <EdgeLayout
           Id="Package\Foreach product file.PrecedenceConstraints[Constraint]"
           TopLeft="33.433310451774,44.5500010899695">
@@ -3752,10 +3767,6 @@ else
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,41.6"
-          Id="Package\Foreach product file\select status"
-          TopLeft="48.809227151858,310.135188654455" />
         <EdgeLayout
           Id="Package\Foreach product file.PrecedenceConstraints[Constraint 3]"
           TopLeft="105.041643578147,275.716669054958">
@@ -3813,6 +3824,10 @@ else
           Size="181.6,41.6"
           Id="Package\Foreach Sales person file\sales person data flow"
           TopLeft="16.1332982328214,90.1500027636689" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Foreach Sales person file\select status"
+          TopLeft="38.1425640173181,303.772225511649" />
         <EdgeLayout
           Id="Package\Foreach Sales person file.PrecedenceConstraints[Constraint]"
           TopLeft="95.4916312101835,64.4500013069309">
@@ -3915,10 +3930,6 @@ else
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,41.6"
-          Id="Package\Foreach Sales person file\select status"
-          TopLeft="38.1425640173181,303.772225511649" />
         <EdgeLayout
           Id="Package\Foreach Sales person file.PrecedenceConstraints[Constraint 3]"
           TopLeft="107.571264027925,277.183335790502">
@@ -3949,6 +3960,22 @@ else
           Id="Package\Foreach Sales person file"
           TopLeft="1078.84254972324,667.038893617834" />
         <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\move customer to archive"
+          TopLeft="553.379607640301,605.942595178714" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\move orders to archive"
+          TopLeft="237.685175740425,611.192594970362" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\move product to archive"
+          TopLeft="930.333298343201,604.518520822054" />
+        <NodeLayout
+          Size="213.6,41.6"
+          Id="Package\move sales person to archive"
+          TopLeft="1077.68516249494,1166.66666542689" />
+        <NodeLayout
           Size="129.6,41.6"
           Id="Package\truncate customer"
           TopLeft="269.675915209967,699.105560539341" />
@@ -3964,6 +3991,30 @@ else
           Size="177.6,41.6"
           Id="Package\truncate sales person"
           TopLeft="1058.00921721775,555.09074461179" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="328.591658528978,538.183333889511">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73.0092610808512"
+              Start="0,0"
+              End="0,65.5092610808512">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5092610808512" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,24.7546305404256,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="399.275915209967,719.905560539341">
@@ -3996,6 +4047,88 @@ else
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="1188.06385610909,1114.23889361783">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.4277718090575"
+              Start="0,0"
+              End="0,44.9277718090575">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.9277718090575" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,14.4638859045288,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="1024.7332983432,604.518520822054">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.2759188745508,-28.6277762102643"
+              Start="0,0"
+              End="25.7759188745508,-28.6277762102643">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-24.6277762102643" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-24.6277762102643"
+                    Point2="0,-28.6277762102643"
+                    Point3="4,-28.6277762102643" />
+                  <mssgle:LineSegment
+                    End="25.7759188745508,-28.6277762102643" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="538.37590895148,666.105560188072">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.0036986888209,-39.3629650093587"
+              Start="0,0"
+              End="7.50369868882092,-39.3629650093587">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-35.3629650093587" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-35.3629650093587"
+                    Point2="0,-39.3629650093587"
+                    Point3="4,-39.3629650093587" />
+                  <mssgle:LineSegment
+                    End="7.50369868882092,-39.3629650093587" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-2.24815065558954,-34.3629650093587,16,16"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4100,34 +4233,6 @@ else
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="184,41.6"
-          Id="Package\move orders to archive"
-          TopLeft="237.685175740425,611.192594970362" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="328.591658528978,538.183333889511">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,73.0092610808512"
-              Start="0,0"
-              End="0,65.5092610808512">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,65.5092610808512" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,24.7546305404256,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
           TopLeft="332.080545475196,652.792594970362">
@@ -4150,10 +4255,6 @@ else
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\move customer to archive"
-          TopLeft="553.379607640301,605.942595178714" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
           TopLeft="651.779607640301,605.942595178714">
@@ -4174,68 +4275,6 @@ else
                     Point3="4,-29.4222209640798" />
                   <mssgle:LineSegment
                     End="20.118513510993,-29.4222209640798" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="538.37590895148,666.105560188072">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="15.0036986888209,-39.3629650093587"
-              Start="0,0"
-              End="7.50369868882092,-39.3629650093587">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-35.3629650093587" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-35.3629650093587"
-                    Point2="0,-39.3629650093587"
-                    Point3="4,-39.3629650093587" />
-                  <mssgle:LineSegment
-                    End="7.50369868882092,-39.3629650093587" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-2.24815065558954,-34.3629650093587,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="188.8,41.6"
-          Id="Package\move product to archive"
-          TopLeft="930.333298343201,604.518520822054" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="1024.7332983432,604.518520822054">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="33.2759188745508,-28.6277762102643"
-              Start="0,0"
-              End="25.7759188745508,-28.6277762102643">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-24.6277762102643" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-24.6277762102643"
-                    Point2="0,-28.6277762102643"
-                    Point3="4,-28.6277762102643" />
-                  <mssgle:LineSegment
-                    End="25.7759188745508,-28.6277762102643" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4271,34 +4310,6 @@ else
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="3.32870128548421,-28.9203727337909,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="213.6,41.6"
-          Id="Package\move sales person to archive"
-          TopLeft="1091.85182859868,1175.33333216243" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="1195.14718916096,1114.23889361783">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,61.0944385445996"
-              Start="0,0"
-              End="0,53.5944385445996">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53.5944385445996" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,18.7972192722998,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
