@@ -65,6 +65,7 @@
     <Folder Include="fact\" />
     <Folder Include="fact\Tables\" />
     <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\stg_customer.sql" />
@@ -85,5 +86,15 @@
     <Build Include="dbo\Tables\process_log.sql" />
     <Build Include="Security\dim.sql" />
     <Build Include="Security\fact.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_sales_person.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_sales_order_header.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_sales_order_details.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_products.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_product_sub_category.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_product_model.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_product_measure.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_product_line.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_product_color.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_product_category.sql" />
   </ItemGroup>
 </Project>
