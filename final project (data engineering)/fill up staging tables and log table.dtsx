@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{4494F6CA-DA0D-4984-B3AC-1E9BD4A71DCB}">
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{C285D97A-B23C-4DFA-B125-9C0294B1A910}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -48,10 +48,12 @@
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{FCF64000-6B6C-4C23-AD15-88414050B98E}"
         DTS:ObjectName="{FCF64000-6B6C-4C23-AD15-88414050B98E}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::files_path]</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files" />
+              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
             <FEFEProperty
               FileSpec="Customer*.xlsx" />
             <FEFEProperty
@@ -602,8 +604,8 @@ else
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{79A979F3-D79C-4F1F-8580-23CF1EC73253}"
-          DTS:ObjectName="{79A979F3-D79C-4F1F-8580-23CF1EC73253}"
+          DTS:DTSID="{867709BC-7E87-480D-AB93-3B37AADFC892}"
+          DTS:ObjectName="{867709BC-7E87-480D-AB93-3B37AADFC892}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::file_name_and_extension" />
       </DTS:ForEachVariableMappings>
@@ -620,10 +622,12 @@ else
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{0FE9A0F5-C61C-4325-84C5-A90AB64F2FFB}"
         DTS:ObjectName="{0FE9A0F5-C61C-4325-84C5-A90AB64F2FFB}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::files_path]</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files" />
+              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
             <FEFEProperty
               FileSpec="Order*.xlsx" />
             <FEFEProperty
@@ -1528,8 +1532,8 @@ else
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{1E7BA551-DEBE-4C4A-8FFB-ACE3660903A2}"
-          DTS:ObjectName="{1E7BA551-DEBE-4C4A-8FFB-ACE3660903A2}"
+          DTS:DTSID="{CF2F81DF-4CB8-4B7D-9D24-27965F40C645}"
+          DTS:ObjectName="{CF2F81DF-4CB8-4B7D-9D24-27965F40C645}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::file_name_and_extension" />
       </DTS:ForEachVariableMappings>
@@ -1546,10 +1550,12 @@ else
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{47F70299-EA59-4E9C-8AB7-E87DBEE9BC3D}"
         DTS:ObjectName="{47F70299-EA59-4E9C-8AB7-E87DBEE9BC3D}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::files_path]</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files" />
+              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
             <FEFEProperty
               FileSpec="Product*.xlsx" />
             <FEFEProperty
@@ -2410,8 +2416,8 @@ else
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{C26A6E65-9864-4A44-844A-0C43CFFF5975}"
-          DTS:ObjectName="{C26A6E65-9864-4A44-844A-0C43CFFF5975}"
+          DTS:DTSID="{27EBECA2-9F72-4F9D-9AE4-C4D45F6B111F}"
+          DTS:ObjectName="{27EBECA2-9F72-4F9D-9AE4-C4D45F6B111F}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::file_name_and_extension" />
       </DTS:ForEachVariableMappings>
@@ -2428,10 +2434,12 @@ else
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{E621E43F-6A55-4EFD-A912-CC490D09CB09}"
         DTS:ObjectName="{E621E43F-6A55-4EFD-A912-CC490D09CB09}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::files_path]</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files" />
+              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
             <FEFEProperty
               FileSpec="SalesPerson*.xlsx" />
             <FEFEProperty
@@ -2901,8 +2909,8 @@ else
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{B1B29F92-6BBB-4966-ABE8-116D5240E4EB}"
-          DTS:ObjectName="{B1B29F92-6BBB-4966-ABE8-116D5240E4EB}"
+          DTS:DTSID="{78C18059-7222-497C-A58C-DE2639B20642}"
+          DTS:ObjectName="{78C18059-7222-497C-A58C-DE2639B20642}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::file_name_and_extension" />
       </DTS:ForEachVariableMappings>
@@ -3759,7 +3767,7 @@ else
     design-time-name="Package\Foreach customer file\customer data  flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\Foreach customer file\customer data  flow\Row Count"
@@ -3803,9 +3811,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3839,9 +3845,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3877,7 +3881,7 @@ else
     design-time-name="Package\Foreach order file\orders data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="171.2,41.6"
           Id="Package\Foreach order file\orders data flow\OLE DB Destination"
@@ -3921,9 +3925,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3957,9 +3959,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -3995,7 +3995,7 @@ else
     design-time-name="Package\Foreach product file\products data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\Foreach product file\products data flow\Row Count"
@@ -4039,9 +4039,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4075,9 +4073,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
