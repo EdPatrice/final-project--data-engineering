@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">ED</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANDwBD2EJLUKL/AXl9+WJcwAAAAACAAAAAAAQZgAAAAEAACAAAAAf7h6nwyHHAJppJyb4rEC58upMuc3reJOqlIgVHyB7bgAAAAAOgAAAAAIAACAAAAAERdjaIkhS4w1+cDSHEsKWpwsg0NjXH6wz9PvsbD2v9pAAAADy38WTcoDTnPYcDboroX+ZNjOY8Z0vaHs5jlp4IOVCxF28YmcqCdKeUiWSjDARWjs3pJU2cAgWTIwQY9Bem8nFvrKFiaxeIR+cx3Nmwc2bXjGukkSp1UuY+ofltuD4nXGqIryfdoVpUaZZBQv+d2bbXrzRw8av8uJylC+Rl1e5WhgrkeZILuJo7jsRGmE6wGRAAAAAb28cQ4dmP7XlFQWvo6xQBSvz+VqRvaSnmRfkEQqH/35PAZEnaGJvVTa1um4V4E7idsA9GxDykrXuqvzDZ/xLhg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAG7cXdlZFj0+AG6KqXjrlNAAAAAACAAAAAAAQZgAAAAEAACAAAABoivHYxCtK6NToRIGf1V3gdfsh7/qPPxj7Efc/cYxtewAAAAAOgAAAAAIAACAAAAArxz7W5v08d11cq0UCnOlkLN92EgCzy9Usw71Ok/O3vZAAAABEULzTneZxkPGLoHi/GYM21mb4n9HX8b6M2tu4Rho57+ythx4w1s5V0Wzh4hHKcFaxkOMT3zVxWK/4xWqhcjQkLQXI4qaFPm713GaagMB0Bd8cCrU+9VtHZKdMMic82Lm/4YofSM7hVlMEX5P4GiJPADpspgSq8stRZW+iLordUBln10yIo5YnGGkeXuJyrllAAAAAs9Es/HR0kG0qHDQqfzXgO21OBjtzqQ7//S3AuQFFWIcUJF/1ls0kHxv58xXLP6O90DVfqaqY1He6lecIoICMbQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -157,7 +157,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">ED\INSTANCE3</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">PCTAYY\SQLSERVER2019</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -201,7 +201,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Customer.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\Customer.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -274,7 +274,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Customer.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\Customer.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -318,7 +318,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Product.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\Product.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -391,7 +391,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Product.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\Product.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -435,7 +435,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\SalesPerson.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\SalesPerson.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -508,7 +508,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\SalesPerson.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\SalesPerson.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -552,7 +552,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Order.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\Order.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -625,7 +625,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Order.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\ms\Project Sales\Order.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -651,10 +651,10 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">50</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">52</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{90B9E9B0-48A1-4A5A-81C7-DBD10879B848}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{95439874-1C1B-4CC6-ABE1-181EA4FAE42C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
