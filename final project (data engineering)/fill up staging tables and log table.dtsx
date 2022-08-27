@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{63BE14EF-C904-4A95-AEAF-8334DDDA04B8}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{C7DC0F93-9EE8-4F73-83A7-DB3481FDE868}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,6 +26,17 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="C:\ms\Project Sales\Order.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{F36863CD-06B1-4F15-B979-C81842EC74B8}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp.gmail.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -602,18 +613,18 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_customer) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
+            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_orders) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
 	update process_log
 		set [status] = 'staging completed'
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_customer) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1863,12 +1874,12 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1934,8 +1945,8 @@ else
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{CF2F81DF-4CB8-4B7D-9D24-27965F40C645}"
-          DTS:ObjectName="{CF2F81DF-4CB8-4B7D-9D24-27965F40C645}"
+          DTS:DTSID="{2A60024E-D342-49CF-B1C5-B20409B3EE78}"
+          DTS:ObjectName="{2A60024E-D342-49CF-B1C5-B20409B3EE78}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::file_name_and_extension" />
       </DTS:ForEachVariableMappings>
@@ -2816,18 +2827,18 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_products) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
+            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_orders) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
 	update process_log
 		set [status] = 'staging completed'
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_products) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -2988,18 +2999,18 @@ where file_name = '" + @[User::file_name_and_extension] + "'"</DTS:PropertyExpre
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_sales_person) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
+            DTS:Name="SqlStatementSource">"if ((select count(*) from stg_orders) = " + (DT_STR, 50, 1252) @[User::number_of_rows] + ")
 	update process_log
 		set [status] = 'staging completed'
 	where [file_name] = '" +  @[User::file_name_and_extension] + "'
 else 
 	update process_log
-		set [status] = 'Failed'
+		set [status] = 'staging Failed'
 	where [file_name] = '" + @[User::file_name_and_extension]  + "' "</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{710D8DF4-29AF-49EF-940C-AAC937843AD3}"
-              SQLTask:SqlStatementSource="if ((select count(*) from stg_sales_person) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="if ((select count(*) from stg_orders) = 0)&#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging completed'&#xA;&#x9;where [file_name] = 'Order.xlsx'&#xA;else &#xA;&#x9;update process_log&#xA;&#x9;&#x9;set [status] = 'staging Failed'&#xA;&#x9;where [file_name] = 'Order.xlsx' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -3697,7 +3708,7 @@ else
           Id="Package\Foreach customer file\process_log"
           TopLeft="30.0166571133675,15.1833344060838" />
         <NodeLayout
-          Size="136,42"
+          Size="136,41.6"
           Id="Package\Foreach customer file\select status"
           TopLeft="35.7629445664685,292.992593686963" />
         <EdgeLayout
@@ -3836,7 +3847,7 @@ else
           Id="Package\Foreach order file\process_log"
           TopLeft="39.8583308911986,5.45000058372827" />
         <NodeLayout
-          Size="136,42"
+          Size="136,41.6"
           Id="Package\Foreach order file\select status"
           TopLeft="64.1111017288987,290.577779522649" />
         <EdgeLayout
@@ -3845,9 +3856,9 @@ else
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-5.5500020364917,63.8000017150243"
+              EndConnector="-5.5500020364917,63.8000017150242"
               Start="0,0"
-              End="-13.0500020364917,63.8000017150243">
+              End="-13.0500020364917,63.8000017150242">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -3858,13 +3869,13 @@ else
                     Point2="-28.0500020364917,0"
                     Point3="-28.0500020364917,4" />
                   <mssgle:LineSegment
-                    End="-28.0500020364917,59.8000017150243" />
+                    End="-28.0500020364917,59.8000017150242" />
                   <mssgle:CubicBezierSegment
-                    Point1="-28.0500020364917,59.8000017150243"
-                    Point2="-28.0500020364917,63.8000017150243"
-                    Point3="-24.0500020364917,63.8000017150243" />
+                    Point1="-28.0500020364917,59.8000017150242"
+                    Point2="-28.0500020364917,63.8000017150242"
+                    Point3="-24.0500020364917,63.8000017150242" />
                   <mssgle:LineSegment
-                    End="-13.0500020364917,63.8000017150243" />
+                    End="-13.0500020364917,63.8000017150242" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3987,7 +3998,7 @@ else
           Id="Package\Foreach product file\products data flow"
           TopLeft="23.2916441245227,83.3666692047646" />
         <NodeLayout
-          Size="136,42"
+          Size="136,41.6"
           Id="Package\Foreach product file\select status"
           TopLeft="48.809227151858,310.135188654455" />
         <EdgeLayout
@@ -4150,7 +4161,7 @@ else
           Id="Package\Foreach Sales person file\sales person data flow"
           TopLeft="16.1332982328214,90.1500027636689" />
         <NodeLayout
-          Size="136,42"
+          Size="136,41.6"
           Id="Package\Foreach Sales person file\select status"
           TopLeft="38.1425640173181,303.772225511649" />
         <EdgeLayout
@@ -4285,23 +4296,23 @@ else
           Id="Package\Foreach Sales person file"
           TopLeft="1078.84254972324,667.038893617834" />
         <NodeLayout
-          Size="197,42"
+          Size="196.8,41.6"
           Id="Package\move customer to archive"
           TopLeft="553.379607640301,605.942595178714" />
         <NodeLayout
-          Size="191,42"
+          Size="184,41.6"
           Id="Package\move orders to archive"
           TopLeft="237.685175740425,611.192594970362" />
         <NodeLayout
-          Size="189,42"
+          Size="188.8,41.6"
           Id="Package\move product to archive"
           TopLeft="930.333298343201,604.518520822054" />
         <NodeLayout
-          Size="214,42"
+          Size="213.6,41.6"
           Id="Package\move sales person to archive"
-          TopLeft="1091.85182859868,1175.33333216243" />
+          TopLeft="1077.68516249494,1166.66666542689" />
         <NodeLayout
-          Size="130,42"
+          Size="129.6,41.6"
           Id="Package\truncate customer"
           TopLeft="269.675915209967,699.105560539341" />
         <NodeLayout
@@ -4318,25 +4329,25 @@ else
           TopLeft="1058.00921721775,555.09074461179" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="330.291658528977,537.783333889511">
+          TopLeft="328.591658528978,538.183333889511">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,73.409261080851"
+              EndConnector="0,73.0092610808512"
               Start="0,0"
-              End="0,65.909261080851">
+              End="0,65.5092610808512">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,65.909261080851" />
+                    End="0,65.5092610808512" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,24.9546305404255,16,16"
+              BoundingBox="-8,24.7546305404256,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4376,25 +4387,25 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="1195.14718916096,1114.23889361783">
+          TopLeft="1188.06385610909,1114.23889361783">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,61.0944385445996"
+              EndConnector="0,52.4277718090575"
               Start="0,0"
-              End="0,53.5944385445996">
+              End="0,44.9277718090575">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.5944385445996" />
+                    End="0,44.9277718090575" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-8,18.7972192722998,16,16"
+              BoundingBox="-8,14.4638859045288,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
