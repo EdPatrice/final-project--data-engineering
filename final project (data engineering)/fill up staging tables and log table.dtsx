@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="53"
-  DTS:VersionGUID="{F387DA26-F0A0-4703-A08D-CCFA9A955D44}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{294F9F8C-9E76-47AC-A05E-069BFF9B5F8A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4645,17 +4645,17 @@ else
     design-time-name="Package\Foreach customer file\customer data  flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\Foreach customer file\customer data  flow\Row Count"
           TopLeft="90,204" />
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Foreach customer file\customer data  flow\OLE DB Destination"
           TopLeft="286.666655275557,212.333335020807" />
         <NodeLayout
-          Size="140,41.6"
+          Size="140,42"
           Id="Package\Foreach customer file\customer data  flow\Excel Source"
           TopLeft="96.6666628254786,69.3333338843452" />
         <EdgeLayout
@@ -4689,9 +4689,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4725,9 +4723,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4879,17 +4875,17 @@ else
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach product file\products data flow\OLE DB Destination"
+          TopLeft="309,251" />
+        <NodeLayout
           Size="130,42"
           Id="Package\Foreach product file\products data flow\Row Count"
           TopLeft="156,169" />
         <NodeLayout
-          Size="140,42"
+          Size="144,42"
           Id="Package\Foreach product file\products data flow\Excel Source"
           TopLeft="262,58" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach product file\products data flow\OLE DB Destination"
-          TopLeft="309,251" />
         <EdgeLayout
           Id="Package\Foreach product file\products data flow.Paths[Row Count Output 1]"
           TopLeft="220.8,210.6">
@@ -4926,30 +4922,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach product file\products data flow.Paths[Excel Source Output]"
-          TopLeft="332,99.6">
+          TopLeft="334,100">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-111.2,69.4"
+              EndConnector="-113,69"
               Start="0,0"
-              End="-111.2,61.9">
+              End="-113,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.7" />
+                    End="0,30.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.7"
-                    Point2="0,34.7"
-                    Point3="-4,34.7" />
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
                   <mssgle:LineSegment
-                    End="-107.2,34.7" />
+                    End="-109,34.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-107.2,34.7"
-                    Point2="-111.2,34.7"
-                    Point3="-111.2,38.7" />
+                    Point1="-109,34.5"
+                    Point2="-113,34.5"
+                    Point3="-113,38.5" />
                   <mssgle:LineSegment
-                    End="-111.2,61.9" />
+                    End="-113,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4962,7 +4958,7 @@ else
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach product file\products data flow\Excel Source">
+    design-time-name="Package\Foreach product file\products data flow\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4975,7 +4971,7 @@ else
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach product file\products data flow\OLE DB Destination">
+    design-time-name="Package\Foreach product file\products data flow\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
