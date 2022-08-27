@@ -25,7 +25,7 @@
         DTS:Name="ConnectionString">@[$Project::files_path]+ @[User::file_name_and_extension]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\Order.xlsx" />
+          DTS:ConnectionString="C:\ms\Project Sales\Order.xlsx" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -48,7 +48,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="archive_folder">
       <DTS:VariableValue
-        DTS:DataType="8">C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\archive\</DTS:VariableValue>
+        DTS:DataType="8">C:\ms\Project Sales\archive\</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -106,7 +106,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
+              Folder="C:\ms\Project Sales\" />
             <FEFEProperty
               FileSpec="Customer*.xlsx" />
             <FEFEProperty
@@ -713,7 +713,7 @@ else
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
+              Folder="C:\ms\Project Sales\" />
             <FEFEProperty
               FileSpec="Order*.xlsx" />
             <FEFEProperty
@@ -966,6 +966,146 @@ else
                           lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[LineTotal]"
                           name="LineTotal"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F20]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F20]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F20]"
+                          name="F20"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F21]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F21]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F21]"
+                          name="F21"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F22]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F22]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F22]"
+                          name="F22"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F23]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F23]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F23]"
+                          name="F23"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F24]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F24]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F24]"
+                          name="F24"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F25]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F25]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F25]"
+                          name="F25"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F26]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F26]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F26]"
+                          name="F26"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F27]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F27]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F27]"
+                          name="F27"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F28]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F28]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F28]"
+                          name="F28"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F29]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F29]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F29]"
+                          name="F29"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F30]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F30]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F30]"
+                          name="F30"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F31]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F31]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F31]"
+                          name="F31"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F32]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F32]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F32]"
+                          name="F32"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F33]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F33]"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].Columns[F33]"
+                          name="F33"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1048,6 +1188,76 @@ else
                           refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[LineTotal]"
                           dataType="r8"
                           name="LineTotal" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F20]"
+                          dataType="wstr"
+                          length="255"
+                          name="F20" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F21]"
+                          dataType="wstr"
+                          length="255"
+                          name="F21" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F22]"
+                          dataType="wstr"
+                          length="255"
+                          name="F22" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F23]"
+                          dataType="wstr"
+                          length="255"
+                          name="F23" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F24]"
+                          dataType="wstr"
+                          length="255"
+                          name="F24" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F25]"
+                          dataType="wstr"
+                          length="255"
+                          name="F25" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F26]"
+                          dataType="wstr"
+                          length="255"
+                          name="F26" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F27]"
+                          dataType="wstr"
+                          length="255"
+                          name="F27" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F28]"
+                          dataType="wstr"
+                          length="255"
+                          name="F28" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F29]"
+                          dataType="wstr"
+                          length="255"
+                          name="F29" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F30]"
+                          dataType="wstr"
+                          length="255"
+                          name="F30" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F31]"
+                          dataType="wstr"
+                          length="255"
+                          name="F31" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F32]"
+                          dataType="wstr"
+                          length="255"
+                          name="F32" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F33]"
+                          dataType="wstr"
+                          length="255"
+                          name="F33" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -1153,6 +1363,90 @@ else
                           dataType="r8"
                           lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[LineTotal]"
                           name="LineTotal" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F20]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F20]"
+                          name="F20" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F21]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F21]"
+                          name="F21" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F22]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F22]"
+                          name="F22" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F23]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F23]"
+                          name="F23" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F24]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F24]"
+                          name="F24" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F25]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F25]"
+                          name="F25" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F26]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F26]"
+                          name="F26" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F27]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F27]"
+                          name="F27" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F28]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F28]"
+                          name="F28" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F29]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F29]"
+                          name="F29" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F30]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F30]"
+                          name="F30" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F31]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F31]"
+                          name="F31" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F32]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F32]"
+                          name="F32" />
+                        <outputColumn
+                          refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F33]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F33]"
+                          name="F33" />
                         <outputColumn
                           refId="Package\Foreach order file\orders data flow\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -1674,7 +1968,7 @@ else
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
+              Folder="C:\ms\Project Sales\" />
             <FEFEProperty
               FileSpec="Product*.xlsx" />
             <FEFEProperty
@@ -1933,6 +2227,26 @@ values
                           lineageId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].Columns[ProductModel]"
                           name="ProductModel"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].Columns[F17]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F17]"
+                          length="255"
+                          lineageId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].Columns[F17]"
+                          name="F17"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].Columns[F18]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F18]"
+                          length="255"
+                          lineageId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].Columns[F18]"
+                          name="F18"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -2011,6 +2325,16 @@ values
                           dataType="wstr"
                           length="255"
                           name="ProductModel" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F17]"
+                          dataType="wstr"
+                          length="255"
+                          name="F17" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Output].ExternalColumns[F18]"
+                          dataType="wstr"
+                          length="255"
+                          name="F18" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -2109,6 +2433,18 @@ values
                           length="255"
                           lineageId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Error Output].Columns[ProductModel]"
                           name="ProductModel" />
+                        <outputColumn
+                          refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F17]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F17]"
+                          name="F17" />
+                        <outputColumn
+                          refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F18]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Error Output].Columns[F18]"
+                          name="F18" />
                         <outputColumn
                           refId="Package\Foreach product file\products data flow\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -2591,7 +2927,7 @@ else
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Users\test\Documents\ESIH\Data training\Data engineering\Project\files\" />
+              Folder="C:\ms\Project Sales\" />
             <FEFEProperty
               FileSpec="SalesPerson*.xlsx" />
             <FEFEProperty
@@ -3356,19 +3692,19 @@ else
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="168,41.6"
+          Size="168,42"
           Id="Package\Foreach customer file\customer data  flow"
           TopLeft="17.5833337472545,79.3833360694516" />
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\Foreach customer file\P_L EndTime &amp; #OfRows"
           TopLeft="20.6416574858964,150.78333486067" />
         <NodeLayout
-          Size="161.6,41.6"
+          Size="162,42"
           Id="Package\Foreach customer file\P_L update status"
           TopLeft="15.8583237386421,222.883335842158" />
         <NodeLayout
-          Size="134.4,41.6"
+          Size="134,42"
           Id="Package\Foreach customer file\process_log"
           TopLeft="30.0166571133675,15.1833344060838" />
         <NodeLayout
@@ -3490,24 +3826,24 @@ else
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="222.4,389.6"
-          Size="222.4,432.8"
+          PanelSize="222,390"
+          Size="222,433"
           Id="Package\Foreach customer file"
           TopLeft="427.17590895148,666.105560188072" />
         <NodeLayout
-          Size="152,41.6"
+          Size="152,42"
           Id="Package\Foreach order file\orders data flow"
           TopLeft="34.3083288547069,69.2500022987525" />
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\Foreach order file\P_L EndTime &amp; #OfRows"
           TopLeft="22.783331760433,141.266669525041" />
         <NodeLayout
-          Size="161.6,41.6"
+          Size="162,42"
           Id="Package\Foreach order file\P_L update status"
           TopLeft="49.0499977648261,224.716669654184" />
         <NodeLayout
-          Size="134.4,41.6"
+          Size="134,42"
           Id="Package\Foreach order file\process_log"
           TopLeft="39.8583308911986,5.45000058372827" />
         <NodeLayout
@@ -3641,24 +3977,24 @@ else
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="311.2,387.2"
-          Size="311.2,430.4"
+          PanelSize="311,387"
+          Size="311,430"
           Id="Package\Foreach order file"
           TopLeft="171.89814131753,107.783333889511" />
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\Foreach product file\P_L EndTime &amp; #OfRows"
           TopLeft="17.8083110726556,160.433334886498" />
         <NodeLayout
-          Size="161.6,41.6"
+          Size="162,42"
           Id="Package\Foreach product file\P_L update status"
           TopLeft="24.2416435781468,234.116669054958" />
         <NodeLayout
-          Size="134.4,41.6"
+          Size="134,42"
           Id="Package\Foreach product file\process_log"
           TopLeft="33.433310451774,23.7500010899695" />
         <NodeLayout
-          Size="162.4,41.6"
+          Size="162,42"
           Id="Package\Foreach product file\products data flow"
           TopLeft="23.2916441245227,83.3666692047646" />
         <NodeLayout
@@ -3804,24 +4140,24 @@ else
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="220,406.4"
-          Size="220,449.6"
+          PanelSize="220,407"
+          Size="220,450"
           Id="Package\Foreach product file"
           TopLeft="758.842562438899,659.238893555845" />
         <NodeLayout
-          Size="196.8,41.6"
+          Size="197,42"
           Id="Package\Foreach Sales person file\P_L EndTime &amp; #OfRows"
           TopLeft="26.9749646594148,160.816668280098" />
         <NodeLayout
-          Size="161.6,41.6"
+          Size="162,42"
           Id="Package\Foreach Sales person file\P_L update status"
           TopLeft="28.1999640385328,235.583335790502" />
         <NodeLayout
-          Size="134.4,41.6"
+          Size="134,42"
           Id="Package\Foreach Sales person file\process_log"
           TopLeft="28.2916312101835,22.8500013069309" />
         <NodeLayout
-          Size="181.6,41.6"
+          Size="182,42"
           Id="Package\Foreach Sales person file\sales person data flow"
           TopLeft="16.1332982328214,90.1500027636689" />
         <NodeLayout
@@ -3955,8 +4291,8 @@ else
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="225.6,404"
-          Size="225.6,447.2"
+          PanelSize="226,404"
+          Size="226,447"
           Id="Package\Foreach Sales person file"
           TopLeft="1078.84254972324,667.038893617834" />
         <NodeLayout
@@ -3980,15 +4316,15 @@ else
           Id="Package\truncate customer"
           TopLeft="269.675915209967,699.105560539341" />
         <NodeLayout
-          Size="236,41.6"
+          Size="236,42"
           Id="Package\truncate process_log &amp; stg_orders"
           TopLeft="196.504621821237,4.60370346531452" />
         <NodeLayout
-          Size="158.4,41.6"
+          Size="158,42"
           Id="Package\truncate products"
           TopLeft="679.398121151294,555.720374214634" />
         <NodeLayout
-          Size="177.6,41.6"
+          Size="178,42"
           Id="Package\truncate sales person"
           TopLeft="1058.00921721775,555.09074461179" />
         <EdgeLayout
@@ -4235,18 +4571,18 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="332.080545475196,652.792594970362">
+          TopLeft="333.930545475196,653.192594970362">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46.3129655689793"
+              EndConnector="0,45.912965568979"
               Start="0,0"
-              End="0,38.8129655689793">
+              End="0,38.412965568979">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.8129655689793" />
+                    End="0,38.412965568979" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4322,15 +4658,15 @@ else
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\Foreach customer file\customer data  flow\Row Count"
           TopLeft="90,204" />
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Foreach customer file\customer data  flow\OLE DB Destination"
           TopLeft="286.666655275557,212.333335020807" />
         <NodeLayout
-          Size="140,41.6"
+          Size="140,42"
           Id="Package\Foreach customer file\customer data  flow\Excel Source"
           TopLeft="96.6666628254786,69.3333338843452" />
         <EdgeLayout
@@ -4436,15 +4772,15 @@ else
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Foreach order file\orders data flow\OLE DB Destination"
           TopLeft="357.833332108127,326.20000035127" />
         <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\Foreach order file\orders data flow\Row Count"
           TopLeft="210.83332495557,162.933334628211" />
         <NodeLayout
-          Size="140,41.6"
+          Size="140,42"
           Id="Package\Foreach order file\orders data flow\Excel Source"
           TopLeft="185,55" />
         <EdgeLayout
@@ -4550,17 +4886,17 @@ else
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="129.6,41.6"
+          Size="171,42"
+          Id="Package\Foreach product file\products data flow\OLE DB Destination"
+          TopLeft="309,251" />
+        <NodeLayout
+          Size="130,42"
           Id="Package\Foreach product file\products data flow\Row Count"
           TopLeft="156,169" />
         <NodeLayout
-          Size="140,41.6"
+          Size="144,42"
           Id="Package\Foreach product file\products data flow\Excel Source"
           TopLeft="262,58" />
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\Foreach product file\products data flow\OLE DB Destination"
-          TopLeft="309,251" />
         <EdgeLayout
           Id="Package\Foreach product file\products data flow.Paths[Row Count Output 1]"
           TopLeft="220.8,210.6">
@@ -4597,30 +4933,30 @@ else
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach product file\products data flow.Paths[Excel Source Output]"
-          TopLeft="332,99.6">
+          TopLeft="334,100">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-111.2,69.4"
+              EndConnector="-113,69"
               Start="0,0"
-              End="-111.2,61.9">
+              End="-113,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.7" />
+                    End="0,30.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.7"
-                    Point2="0,34.7"
-                    Point3="-4,34.7" />
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
                   <mssgle:LineSegment
-                    End="-107.2,34.7" />
+                    End="-109,34.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-107.2,34.7"
-                    Point2="-111.2,34.7"
-                    Point3="-111.2,38.7" />
+                    Point1="-109,34.5"
+                    Point2="-113,34.5"
+                    Point3="-113,38.5" />
                   <mssgle:LineSegment
-                    End="-111.2,61.9" />
+                    End="-113,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4633,7 +4969,7 @@ else
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach product file\products data flow\Excel Source">
+    design-time-name="Package\Foreach product file\products data flow\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4646,7 +4982,7 @@ else
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach product file\products data flow\OLE DB Destination">
+    design-time-name="Package\Foreach product file\products data flow\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4662,17 +4998,17 @@ else
     design-time-name="Package\Foreach Sales person file\sales person data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Foreach Sales person file\sales person data flow\OLE DB Destination"
           TopLeft="215.5,234.5" />
         <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\Foreach Sales person file\sales person data flow\Row Count"
           TopLeft="119,121" />
         <NodeLayout
-          Size="140,41.6"
+          Size="140,42"
           Id="Package\Foreach Sales person file\sales person data flow\Excel Source"
           TopLeft="5.5,5.5" />
         <EdgeLayout
@@ -4706,9 +5042,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -4742,9 +5076,7 @@ else
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
