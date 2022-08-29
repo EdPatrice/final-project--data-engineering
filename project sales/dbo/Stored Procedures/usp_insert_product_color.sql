@@ -6,6 +6,11 @@ begin
 	using (
 		select distinct color from stg_products) as spc
 	on (pc.color_name = spc.color)
+	when matched then 
+		update set 
+			color_name = color
 	when not matched by target then
-		insert (color_name) values (spc.color);
+		insert (color_name) values (color)
+	when not matched by source then 
+		delete;
 end

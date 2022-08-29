@@ -2,6 +2,7 @@
 create   procedure usp_insert_products
 as
 begin
+	
 	merge dim.products as p
 	using (
 	select
@@ -36,6 +37,22 @@ begin
 			on (sp.ProductModel = pmo.model_name)
 	) as src
 	on ([Name] = p.product_name)
+	when matched then
+		update set 
+			product_ID = ProductID,
+			product_name = [Name],
+			product_number = ProductNumber,
+			color_ID = src.color_ID,
+			safety_stock_level = SafetyStockLevel,
+			reorder_point = ReorderPoint,
+			standard_cost = StandardCost,
+			list_price = ListPrice,
+			product_size = Size,
+			ps_measure_ID = size_measure,
+			product_line_ID = src.product_line_ID,
+			product_category_ID = src.product_category_ID,
+			model_ID = src.model_ID
+
 	when not matched by target then 
 		insert (
 			product_ID,	product_name, product_number, 
@@ -50,5 +67,7 @@ begin
 			StandardCost, ListPrice, Size, 
 			size_measure, [weight], weight_measure, 
 			product_line_ID, product_category_ID, model_ID
-		);
+		)
+	when not matched by source then 
+		delete;
 end

@@ -9,5 +9,7 @@ begin
 		select distinct WeightUnitMeasureCode from stg_products) as src
 	on (measure = pm.measure_name)
 	when not matched by target then 
-		insert (measure_name) values (measure);
+		insert (measure_name) values (measure)
+	when not matched by source then 
+		delete;
 end

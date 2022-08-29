@@ -1,4 +1,5 @@
-﻿create   procedure usp_insert_sales_order_details
+﻿
+create   procedure usp_insert_sales_order_details
 as
 begin
 	merge fact.sales_order_details as sod
@@ -15,6 +16,14 @@ begin
 	) as src
 	on (src.sales_order_ID = sod.sales_order_ID
 		and src.product_ID = sod.product_ID)
+	when matched then
+	
+		update set
+			order_qty = OrderQty,
+			unit_price = UnitPrice,
+			unit_price_discount	= UnitPriceDiscount,
+			line_total = LineTotal
+
 	when not matched by target then
 		insert (
 			sales_order_ID, order_Qty, product_ID,

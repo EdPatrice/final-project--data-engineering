@@ -96,5 +96,6 @@
     <Build Include="dbo\Stored Procedures\usp_insert_product_line.sql" />
     <Build Include="dbo\Stored Procedures\usp_insert_product_color.sql" />
     <Build Include="dbo\Stored Procedures\usp_insert_product_category.sql" />
+    <Build Include="dbo\Stored Procedures\usp_insert_customer.sql" />
   </ItemGroup>
 </Project>
