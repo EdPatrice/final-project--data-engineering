@@ -39,17 +39,6 @@
           ConnectByProxy="False" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
-      DTS:CreationName="SMTP"
-      DTS:DTSID="{02336DB6-6D07-4EFB-A7BD-C8FB5C91CD94}"
-      DTS:ObjectName="SMTP Connection Manager">
-      <DTS:ObjectData>
-        <SmtpConnectionManager
-          ConnectionString="SmtpServer=smtp.mail.yahoo.com;UseWindowsAuthentication=True;EnableSsl=True;"
-          ConnectByProxy="False" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
@@ -3224,28 +3213,6 @@ else
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Send Mail Task"
-      DTS:CreationName="Microsoft.SendMailTask"
-      DTS:Description="Send Mail Task"
-      DTS:DTSID="{A670D5D3-4F02-40D6-9260-5701C68413F5}"
-      DTS:ExecutableType="Microsoft.SendMailTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Send Mail Task"
-      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SendMailTask:SendMailTaskData
-          SendMailTask:SMTPServer="{02336DB6-6D07-4EFB-A7BD-C8FB5C91CD94}"
-          SendMailTask:From="tainajaceinthe@yahoo.com"
-          SendMailTask:To="tainajaceinthe@gmail.com"
-          SendMailTask:CC="patricepavelus@gmail.com"
-          SendMailTask:Subject="test"
-          SendMailTask:Priority="High"
-          SendMailTask:MessageSource="mail failed" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\truncate customer"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
@@ -3320,7 +3287,7 @@ else
       DTS:CreationName=""
       DTS:DTSID="{7DA874E6-0300-4ED3-A924-EE58E3C51AC0}"
       DTS:EvalOp="1"
-      DTS:Expression="@[User::check_status] !=  @[User::staging_completed]"
+      DTS:Expression="@[User::check_status] ==  @[User::staging_completed]"
       DTS:From="Package\Foreach order file"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -3343,16 +3310,6 @@ else
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 10"
       DTS:To="Package\move sales person to archive" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
-      DTS:CreationName=""
-      DTS:DTSID="{988ACCF4-9C10-436C-8547-7607E6268CC2}"
-      DTS:EvalOp="1"
-      DTS:Expression="@[User::check_status]==  @[User::staging_completed]"
-      DTS:From="Package\Foreach order file"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 11"
-      DTS:To="Package\Send Mail Task" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -4718,11 +4675,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         <NodeLayout
           Size="196.8,41.6"
           Id="Package\move customer to archive"
-          TopLeft="578.379607640301,606.942595178714" />
+          TopLeft="553.379607640301,605.942595178714" />
         <NodeLayout
           Size="184,41.6"
           Id="Package\move orders to archive"
-          TopLeft="193.685175740425,606.192594970362" />
+          TopLeft="237.685175740425,611.192594970362" />
         <NodeLayout
           Size="188.8,41.6"
           Id="Package\move product to archive"
@@ -4760,19 +4717,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.2046305404255" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.2046305404255"
-                    Point2="0,34.2046305404255"
-                    Point3="-4,34.2046305404255" />
-                  <mssgle:LineSegment
-                    End="-34.212965577105,34.2046305404255" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-34.212965577105,34.2046305404255"
-                    Point2="-38.212965577105,34.2046305404255"
-                    Point3="-38.212965577105,38.2046305404255" />
-                  <mssgle:LineSegment
-                    End="-38.212965577105,60.909261080851" />
+                    End="0,65.5092610808512" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4871,31 +4816,31 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="538.17590895148,666.105560188072">
+          TopLeft="538.37590895148,666.105560188072">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="40.203698688821,-38.162965009358"
+              EndConnector="15.0036986888209,-39.3629650093587"
               Start="0,0"
-              End="32.703698688821,-38.162965009358">
+              End="7.50369868882092,-39.3629650093587">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-34.162965009358" />
+                    End="0,-35.3629650093587" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-34.162965009358"
-                    Point2="0,-38.162965009358"
-                    Point3="4,-38.162965009358" />
+                    Point1="0,-35.3629650093587"
+                    Point2="0,-39.3629650093587"
+                    Point3="4,-39.3629650093587" />
                   <mssgle:LineSegment
-                    End="32.703698688821,-38.162965009358" />
+                    End="7.50369868882092,-39.3629650093587" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="10.3518493444105,-33.162965009358,16,16"
+              BoundingBox="-2.24815065558954,-34.3629650093587,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5003,30 +4948,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="289.185175740425,648.192594970362">
+          TopLeft="333.930545475196,653.192594970362">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="45.490739469542,50.912965568979"
+              EndConnector="0,45.912965568979"
               Start="0,0"
-              End="45.490739469542,43.412965568979">
+              End="0,38.412965568979">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.4564827844895" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.4564827844895"
-                    Point2="0,25.4564827844895"
-                    Point3="4,25.4564827844895" />
-                  <mssgle:LineSegment
-                    End="41.490739469542,25.4564827844895" />
-                  <mssgle:CubicBezierSegment
-                    Point1="41.490739469542,25.4564827844895"
-                    Point2="45.490739469542,25.4564827844895"
-                    Point3="45.490739469542,29.4564827844895" />
-                  <mssgle:LineSegment
-                    End="45.490739469542,43.412965568979" />
+                    End="0,38.412965568979" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5037,24 +4970,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="676.879607640301,606.942595178714">
+          TopLeft="651.779607640301,605.942595178714">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="2.5185135109931,-30.22222096408"
+              EndConnector="27.618513510993,-29.4222209640798"
               Start="0,0"
-              End="10.0185135109931,-30.22222096408">
+              End="20.118513510993,-29.4222209640798">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-26.22222096408" />
+                    End="0,-25.4222209640798" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-26.22222096408"
-                    Point2="0,-30.22222096408"
-                    Point3="4,-30.22222096408" />
+                    Point1="0,-25.4222209640798"
+                    Point2="0,-29.4222209640798"
+                    Point3="4,-29.4222209640798" />
                   <mssgle:LineSegment
-                    End="10.0185135109931,-30.22222096408" />
+                    End="20.118513510993,-29.4222209640798" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5093,46 +5026,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Send Mail Task"
-          TopLeft="397,579" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="377.89814131753,537.783333889511">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="96.60185868247,41.216666110489"
-              Start="0,0"
-              End="96.60185868247,33.716666110489">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.6132435378171" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.6132435378171"
-                    Point2="0,16.6132435378171"
-                    Point3="4,16.6132435378171" />
-                  <mssgle:LineSegment
-                    End="92.60185868247,16.6132435378171" />
-                  <mssgle:CubicBezierSegment
-                    Point1="92.60185868247,16.6132435378171"
-                    Point2="96.60185868247,16.6132435378171"
-                    Point3="96.60185868247,20.6132435378171" />
-                  <mssgle:LineSegment
-                    End="96.60185868247,33.716666110489" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="40.300929341235,21.6132435378171,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -5140,7 +5033,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     design-time-name="Package\Foreach customer file\customer data  flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\Foreach customer file\customer data  flow\Row Count"
@@ -5184,9 +5077,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5220,9 +5111,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -5376,7 +5265,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
     design-time-name="Package\Foreach product file\products data flow">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\Foreach product file\products data flow\Row Count"
@@ -5420,9 +5309,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5456,9 +5343,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
