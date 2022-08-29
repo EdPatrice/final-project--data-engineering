@@ -13,9 +13,15 @@ begin
 				on (sp.ProductSubCategory = psc.ps_category_name)
 	) as src
 	on (pc.product_category_name = category)
+	when matched then 
+		update set 
+			ps_category_ID = src.ps_category_ID,
+			product_category_name = category
 	when not matched by target then
 		insert 
 			( ps_category_ID, product_category_name)
 		values
-			(ps_category_ID, category);
+			(ps_category_ID, category)
+	when not matched by source then 
+		delete;
 end

@@ -14,5 +14,7 @@ begin
 			insert 
 				(sp_ID, sales_quota, bonus, commission_pct)
 			values
-				(SalesPersonID, SalesQuota, Bonus, CommissionPct);
+				(SalesPersonID, SalesQuota, Bonus, CommissionPct)
+		when not matched by source then 
+			delete;
 end

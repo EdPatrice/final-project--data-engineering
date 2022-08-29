@@ -17,5 +17,7 @@ begin
 			middle_name, last_name, suffix)
 		values
 			(stg_cus.CustomerID, stg_cus.Title, stg_cus.FirstName, 
-			stg_cus.MiddleName, stg_cus.LastName, stg_cus.Suffix);
+			stg_cus.MiddleName, stg_cus.LastName, stg_cus.Suffix)
+	when not matched by source then 
+		delete;
 end
